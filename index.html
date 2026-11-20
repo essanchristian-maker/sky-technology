@@ -309,7 +309,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <figure class="reel rv" style="margin:0;--d:.12s"><div class="phone"><video muted loop playsinline preload="none" poster="media/reel-solaire-4g.jpg" data-auto><source src="media/reel-solaire-4g.mp4" type="video/mp4"></video></div><h3>Caméra solaire 4G</h3><p>Un terrain sans courant, surveillé</p></figure>
       <figure class="reel rv" style="margin:0;--d:.24s"><div class="phone"><video muted loop playsinline preload="none" poster="media/reel-alarme.jpg" data-auto><source src="media/reel-alarme.mp4" type="video/mp4"></video></div><h3>Alarme anti-intrusion</h3><p>Coffret, raccordements, alerte GSM</p></figure>
     </div>
-    <p class="dl rv">Activez la musique en bas à droite pour l'ambiance complète.</p>
+    <p class="dl rv">Coupez ou relancez la musique avec le bouton en bas à droite.</p>
   </div>
 </section>
 
@@ -393,7 +393,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 <a class="wa" id="wa" href="https://wa.me/2250779385484" aria-label="Écrire sur WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.6-.5-1-1.2-1.4-1.8-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3c-.3.3-1 .9-1 2.3s1 2.7 1.1 2.9c.1.2 2 3.1 4.9 4.3 1.8.8 2.5.8 3.4.7.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4z"/></svg></a>
 <button class="music" id="music" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">Musique</span></button>
-<audio id="audio" src="media/ambiance.mp3" loop preload="none"></audio>
+<audio id="audio" src="media/ambiance.mp3" loop preload="auto"></audio>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo agrandie">
   <button type="button" id="lb-close" aria-label="Fermer">✕</button>
@@ -443,12 +443,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   }
   vids.forEach(function(v){v.addEventListener('click',function(){v.paused?v.play():v.pause()})});
 
-  // Musique
-  var mb=document.getElementById('music'),au=document.getElementById('audio');au.volume=.55;
-  mb.addEventListener('click',function(){
-    if(au.paused){var p=au.play();if(p&&p.then)p.then(on).catch(function(){});else on()}else{au.pause();mb.classList.remove('on');mb.setAttribute('aria-pressed','false')}
-  });
+  // Musique : démarre seule (ou au premier geste si le navigateur bloque le son), sauf si le visiteur l'a coupée
+  var mb=document.getElementById('music'),au=document.getElementById('audio'),off=false,evs=['pointerdown','touchstart','keydown','click'];
+  try{off=localStorage.getItem('sky-music')==='off'}catch(e){}
   function on(){mb.classList.add('on');mb.setAttribute('aria-pressed','true')}
+  function stopUi(){mb.classList.remove('on');mb.setAttribute('aria-pressed','false')}
+  function fadeIn(){au.volume=0;var v=0,t=setInterval(function(){v=Math.min(.55,v+.03);au.volume=v;if(v>=.55)clearInterval(t)},80)}
+  function start(){if(!au.paused)return;fadeIn();var p=au.play();if(p&&p.then)p.then(function(){on();unbind()}).catch(function(){});else{on();unbind()}}
+  function gesture(e){if(off||(e&&e.target&&e.target.closest&&e.target.closest('#music')))return;start()}
+  function unbind(){evs.forEach(function(n){removeEventListener(n,gesture,true)})}
+  if(!off){start();evs.forEach(function(n){addEventListener(n,gesture,{capture:true,passive:true})})}
+  mb.addEventListener('click',function(){
+    if(au.paused){off=false;try{localStorage.removeItem('sky-music')}catch(e){}start()}
+    else{au.pause();stopUi();off=true;unbind();try{localStorage.setItem('sky-music','off')}catch(e){}}
+  });
 
   // Galerie : filtres + agrandissement
   var btns=document.querySelectorAll('.seg button'),shots=document.querySelectorAll('.gal button');
