@@ -230,6 +230,55 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .js .step.rv:not(.in) i{transform:rotateY(180deg)}
 .hero .head{transform-style:preserve-3d;will-change:transform}
 .phone{transition:transform .2s linear}
+
+/* Tarifs */
+.ptabs{display:flex;justify-content:center;margin-bottom:44px}
+.prods{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.prod{background:var(--card);border-radius:28px;padding:22px 22px 24px;display:grid;grid-template-rows:auto 1fr auto;gap:16px;border:1px solid var(--line)}
+.prod[hidden]{display:none!important}
+.prod .pic{background:#fff;border-radius:18px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.prod .pic img{max-width:86%;max-height:86%;object-fit:contain}
+.prod .pic.photo img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:cover}
+.prod .pic svg{width:72px;height:72px;stroke:#1d1d1f}
+.prod .tag{font-size:14px;font-weight:600;color:var(--accent)}
+.prod h3{font-size:22px;font-weight:600;letter-spacing:-.02em;margin:4px 0 6px}
+.prod p{font-size:16px;color:var(--muted);font-weight:300;line-height:1.45}
+.prod .price{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:14px;gap:10px}
+.prod .price b{font-family:var(--display);font-size:28px;font-weight:300;letter-spacing:-.03em;white-space:nowrap}
+.prod .price b small{font-size:14px;color:var(--muted);margin-left:4px;font-weight:400}
+.prod .price span{font-size:14px;color:var(--soft);text-align:right}
+.case{margin-top:clamp(70px,8vw,110px);display:grid;grid-template-columns:1fr 1fr;border-radius:36px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
+.case .img{min-height:420px;position:relative;overflow:hidden}
+.case .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.case .body{padding:clamp(30px,4vw,56px);display:grid;gap:14px;align-content:center}
+.case h3{font-size:clamp(30px,3.4vw,44px);font-weight:200;letter-spacing:-.035em;line-height:1.05}
+.case h3 b{font-weight:600}
+.lines{display:grid;margin-top:10px}
+.lines div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:17px}
+.lines div span:last-child{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.js .lines div{opacity:0;transform:translateX(-24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.js .case.in .lines div{opacity:1;transform:none}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px}
+.total>span{font-size:18px;color:var(--muted)}
+.total b{font-family:var(--display);font-size:clamp(40px,4.4vw,56px);font-weight:600;letter-spacing:-.04em;color:var(--accent)}
+.fine{font-size:15px;color:var(--soft);text-align:center;margin-top:32px;max-width:70ch;margin-inline:auto}
+
+/* Documents */
+.docs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);perspective:1400px}
+.doc{display:grid;gap:18px;text-decoration:none;color:inherit;text-align:center}
+.cover{position:relative;aspect-ratio:3/4;border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18),0 0 0 1px var(--line);transform:rotateY(-16deg) rotateX(6deg);transition:transform .8s var(--ease),box-shadow .8s;animation:float 6s ease-in-out infinite}
+.doc:nth-child(2) .cover{animation-delay:-2s;transform:rotateY(0) rotateX(6deg)}
+.doc:nth-child(3) .cover{animation-delay:-4s;transform:rotateY(16deg) rotateX(6deg)}
+.doc:hover .cover{transform:rotateY(0) rotateX(0) translateZ(60px)!important;box-shadow:0 50px 90px rgba(0,0,0,.28)}
+.cover img{width:100%;height:100%;object-fit:cover;object-position:top}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.5) 0%,transparent 35%)}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.doc h3{font-size:24px;font-weight:600;letter-spacing:-.02em}
+.doc p{font-size:16px;color:var(--muted)}
+.doc .dlb{display:inline-flex;margin:4px auto 0;align-items:center;gap:8px;color:var(--accent);font-weight:500;font-size:17px}
+@media (max-width:1000px){.prods{grid-template-columns:1fr 1fr}}
+@media (max-width:880px){.case{grid-template-columns:1fr}.case .img{min-height:280px}.docs{grid-template-columns:1fr;max-width:380px;margin:auto}.cover{transform:none!important}}
+@media (max-width:560px){.prods{grid-template-columns:1fr}}
 @media (max-width:880px){
   body{font-size:19px}
   .tiles,.gear{grid-template-columns:1fr 1fr}
@@ -255,7 +304,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 <nav id="nav"><div class="wrap">
   <a class="logo" href="#top"><svg width="26" height="26"><use href="#mark"/></svg>SKY TECHNOLOGY</a>
-  <ul><li><a href="#vision">Technologie</a></li><li><a href="#services">Solutions</a></li><li><a href="#videos">Vidéos</a></li><li><a href="#realisations">Réalisations</a></li><li><a href="#methode">Méthode</a></li><li><a href="#equipements">Équipements</a></li></ul>
+  <ul><li><a href="#vision">Technologie</a></li><li><a href="#services">Solutions</a></li><li><a href="#videos">Vidéos</a></li><li><a href="#realisations">Réalisations</a></li><li><a href="#methode">Méthode</a></li><li><a href="#tarifs">Tarifs</a></li><li><a href="#documents">Documents</a></li></ul>
   <a class="pill" href="#contact">Nous contacter</a>
 </div></nav>
 
@@ -424,6 +473,65 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   </div>
 </section>
 
+<section id="tarifs">
+  <div class="wrap">
+    <div class="head center">
+      <span class="kicker rv">Catalogue et tarifs</span>
+      <h2 class="mid rv" style="--d:.1s">Des prix clairs.<br><b>Sans surprise.</b></h2>
+      <p class="sub rv" style="--d:.2s">Prix unitaires en francs CFA, hors taxes et hors pose. Chaque site fait l'objet d'un devis gratuit.</p>
+    </div>
+    <div class="ptabs rv"><div class="seg" role="group" aria-label="Catégories" id="ptabs">
+      <button type="button" data-f="all" aria-pressed="true">Tout</button>
+      <button type="button" data-f="cam" aria-pressed="false">Caméras</button>
+      <button type="button" data-f="alarme" aria-pressed="false">Alarme</button>
+      <button type="button" data-f="acces" aria-pressed="false">Accès</button>
+      <button type="button" data-f="reseau" aria-pressed="false">Réseau</button>
+    </div></div>
+    <div class="prods">
+      <article class="prod rv" style="--d:0s" data-c="cam"><div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke-width=".9"><circle cx="12" cy="10" r="7"/><circle cx="9.5" cy="9.5" r="2"/><circle cx="14.5" cy="9.5" r="2"/><path d="M8 19h8M12 17v2"/></svg></div><div><span class="tag">Double objectif</span><h3>EZVIZ H9c</h3><p>3 MP + 3 MP, PTZ 360°, suivi automatique par IA, vision nocturne couleur.</p></div><div class="price"><b>60 000<small>FCFA</small></b><span>Wi-Fi · extérieur</span></div></article>
+      <article class="prod rv" style="--d:0.08s" data-c="cam"><div class="pic"><img src="img/cat-ezviz.jpg" alt="" loading="lazy"></div><div><span class="tag">Intérieur</span><h3>EZVIZ H6c Pro</h3><p>3 MP, motorisée 360°, suivi automatique, vision de nuit, audio bidirectionnel.</p></div><div class="price"><b>30 000<small>FCFA</small></b><span>Wi-Fi · intérieur</span></div></article>
+      <article class="prod rv" style="--d:0.16s" data-c="cam"><div class="pic"><img src="img/cat-solaire-clean.jpg" alt="" loading="lazy"></div><div><span class="tag">Sans courant</span><h3>Caméra solaire 4G PTZ</h3><p>Panneau solaire, batterie, carte SIM 4G. Étanche IP66.</p></div><div class="price"><b>Sur devis</b><span>Terrains · chantiers</span></div></article>
+      <article class="prod rv" style="--d:0.24s" data-c="cam"><div class="pic photo"><img src="img/ecrans-2.jpg" alt="" loading="lazy"></div><div><span class="tag">Professionnel</span><h3>Système Hikvision ou Dahua</h3><p>Caméras, enregistreur, disque et écran. De 4 à 32 caméras.</p></div><div class="price"><b>Sur devis</b><span>Résidences · entreprises</span></div></article>
+      <article class="prod rv" style="--d:0s" data-c="alarme"><div class="pic"><img src="img/cat-alarme-crop.jpg" alt="" loading="lazy"></div><div><span class="tag">GSM et Wi-Fi</span><h3>Kit alarme anti-intrusion</h3><p>Centrale à clavier, détecteurs, sirène, télécommandes.</p></div><div class="price"><b>Sur devis</b><span>Alerte sur téléphone</span></div></article>
+      <article class="prod rv" style="--d:0.08s" data-c="alarme"><div class="pic photo"><img src="img/alarme-wizor.jpg" alt="" loading="lazy"></div><div><span class="tag">Professionnel</span><h3>Centrale filaire</h3><p>Bureaux, entrepôts, commerces. Batterie de secours, zones multiples.</p></div><div class="price"><b>Sur devis</b><span>Pose comprise</span></div></article>
+      <article class="prod rv" style="--d:0s" data-c="acces"><div class="pic"><img src="img/cat-serrure-2.jpg" alt="" loading="lazy"></div><div><span class="tag">Application Tuya</span><h3>Serrure connectée</h3><p>Empreinte, code, carte, clé et ouverture à distance.</p></div><div class="price"><b>Sur devis</b><span>Portes d'entrée</span></div></article>
+      <article class="prod rv" style="--d:0.08s" data-c="acces"><div class="pic"><img src="img/cat-visiophone.jpg" alt="" loading="lazy"></div><div><span class="tag">Vidéo</span><h3>Visiophone</h3><p>Écran intérieur et platine de rue. Voyez le visiteur avant d'ouvrir.</p></div><div class="price"><b>Sur devis</b><span>Villas · immeubles</span></div></article>
+      <article class="prod rv" style="--d:0.16s" data-c="acces"><div class="pic"><img src="img/cat-serrure-hotel.jpg" alt="" loading="lazy"></div><div><span class="tag">Hôtellerie</span><h3>Serrure d'hôtel à carte</h3><p>Carte RFID, gestion des chambres et des accès du personnel.</p></div><div class="price"><b>Sur devis</b><span>Hôtels · résidences</span></div></article>
+      <article class="prod rv" style="--d:0s" data-c="reseau"><div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke-width=".9"><path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0"/><circle cx="12" cy="18.5" r="1"/></svg></div><div><span class="tag">Wi-Fi</span><h3>Répéteur Wi-Fi</h3><p>Étend la couverture jusqu'aux caméras éloignées.</p></div><div class="price"><b>20 000<small>FCFA</small></b><span>l'unité</span></div></article>
+      <article class="prod rv" style="--d:0.08s" data-c="reseau"><div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke-width=".9"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 3v4M12 3v4M15 3v4"/></svg></div><div><span class="tag">Stockage</span><h3>Carte microSD 32 Go</h3><p>SanDisk Ultra. Enregistrement local sur la caméra.</p></div><div class="price"><b>5 000<small>FCFA</small></b><span>l'unité</span></div></article>
+      <article class="prod rv" style="--d:0.16s" data-c="reseau"><div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke-width=".9"><path d="M3 18c4 0 4-12 9-12s5 12 9 12"/><rect x="2" y="16" width="3" height="4" rx=".5"/><rect x="19" y="16" width="3" height="4" rx=".5"/></svg></div><div><span class="tag">Câblage</span><h3>Câble FTP blindé</h3><p>Pour caméras IP et réseau, protégé des interférences.</p></div><div class="price"><b>500<small>FCFA</small></b><span>le mètre</span></div></article>
+      <article class="prod rv" style="--d:0.24s" data-c="reseau"><div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke-width=".9"><rect x="2" y="9" width="20" height="6" rx="1"/><path d="M12 9v6"/></svg></div><div><span class="tag">Finition</span><h3>Goulotte deux passages</h3><p>Câbles rangés et protégés, pose propre au mur.</p></div><div class="price"><b>1 500<small>FCFA</small></b><span>l'unité</span></div></article>
+      <article class="prod rv" style="--d:0s" data-c="reseau"><div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke-width=".9"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M5 9h14"/><circle cx="12" cy="14" r="2"/></svg></div><div><span class="tag">Extérieur</span><h3>Boîtier étanche</h3><p>Protège les connexions extérieures de la pluie.</p></div><div class="price"><b>5 000<small>FCFA</small></b><span>l'unité</span></div></article>
+      <article class="prod rv" style="--d:0.08s" data-c="reseau"><div class="pic photo"><img src="img/baie-1.jpg" alt="" loading="lazy"></div><div><span class="tag">Mikrotik</span><h3>Baie réseau et hotspot Wi-Fi</h3><p>Baie, switchs, brassage et Wi-Fi à tickets avec page de connexion.</p></div><div class="price"><b>Sur devis</b><span>Hôtels · résidences</span></div></article>
+    </div>
+    <div class="case rv" id="case">
+      <div class="img"><img src="img/ecrans-5.jpg" alt="Supervision d'une villa" loading="lazy" data-par></div>
+      <div class="body">
+        <span class="kicker">Exemple de projet réel</span>
+        <h3>3 caméras EZVIZ,<br><b>posées et configurées.</b></h3>
+        <div class="lines"><div style="transition-delay:0.15s"><span>2 × EZVIZ H9c double objectif</span><span>120 000</span></div><div style="transition-delay:0.27s"><span>1 × EZVIZ H6c Pro intérieur</span><span>30 000</span></div><div style="transition-delay:0.39s"><span>3 × carte microSD 32 Go</span><span>15 000</span></div><div style="transition-delay:0.51s"><span>Répéteur Wi-Fi</span><span>20 000</span></div><div style="transition-delay:0.63s"><span>15 m de câble FTP, 5 goulottes</span><span>15 000</span></div><div style="transition-delay:0.75s"><span>Main-d'œuvre et échelle</span><span>35 000</span></div></div>
+        <div class="total"><span>Total</span><b><span data-count="235000" data-fmt="fr">235 000</span> FCFA</b></div>
+      </div>
+    </div>
+    <p class="fine">Prix valables au jour de la publication. Le prix exact dépend du site. Photos produits non contractuelles.</p>
+  </div>
+</section>
+
+<section class="alt" id="documents">
+  <div class="wrap">
+    <div class="head center">
+      <span class="kicker rv">Documents</span>
+      <h2 class="mid rv" style="--d:.1s">Tout Sky Technology.<br><b>À télécharger.</b></h2>
+      <p class="sub rv" style="--d:.2s">Partagez-les sur WhatsApp, imprimez-les ou gardez-les sous la main.</p>
+    </div>
+    <div class="docs">
+      <a class="doc rv" href="docs/catalogue-sky-technology.pdf" download><div class="cover"><img src="docs/catalogue.jpg" alt="Couverture du catalogue" loading="lazy"></div><h3>Catalogue 2026</h3><p>Produits et prix · PDF, 4 pages</p><span class="dlb">↓ Télécharger</span></a>
+      <a class="doc rv" style="--d:.12s" href="docs/prospectus-sky-technology.pdf" download><div class="cover"><img src="docs/prospectus.jpg" alt="Couverture du prospectus" loading="lazy"></div><h3>Prospectus</h3><p>Nos services en bref · PDF A5</p><span class="dlb">↓ Télécharger</span></a>
+      <a class="doc rv" style="--d:.24s" href="docs/presentation-sky-technology.pdf" download><div class="cover"><img src="docs/presentation.jpg" alt="Couverture de la présentation" loading="lazy" style="object-position:center"></div><h3>Présentation entreprise</h3><p>Pour vos appels d'offres · PDF, 9 pages</p><span class="dlb">↓ Télécharger</span></a>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="wrap contact">
     <div class="head center" style="margin:0">
@@ -462,8 +570,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   // Compteurs
   var cs=document.querySelectorAll('[data-count]');
   if('IntersectionObserver' in window && !reduce){
-    var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var el=e.target,n=+el.dataset.count,suf=el.dataset.suffix||'',t0=performance.now();
-      (function step(t){var p=Math.min(1,(t-t0)/1600),v=Math.round(n*(1-Math.pow(1-p,3)));el.textContent=v+suf;if(p<1)requestAnimationFrame(step)})(t0)})},{threshold:.6});
+    var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var el=e.target,n=+el.dataset.count,suf=el.dataset.suffix||'',t0=performance.now()+(el.dataset.fmt?900:0);
+      (function step(t){var p=Math.max(0,Math.min(1,(t-t0)/1600)),v=Math.round(n*(1-Math.pow(1-p,3)));el.textContent=(el.dataset.fmt?v.toLocaleString('fr-FR').replace(/\u202f|\u00a0/g,' '):v)+suf;if(p<1)requestAnimationFrame(step)})(t0)})},{threshold:.6});
     cs.forEach(function(c){c.textContent='0'+(c.dataset.suffix||'');co.observe(c)});
   }
 
@@ -519,7 +627,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   // Inclinaison 3D au survol (cartes, photos, vidéos)
   var fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
   if(fine&&!reduce){
-    document.querySelectorAll('.tile,.gear figure,.gal .ph,.phone,.cards a,.media').forEach(function(el){
+    document.querySelectorAll('.tile,.gear figure,.gal .ph,.phone,.cards a,.media,.prod').forEach(function(el){
       el.classList.add('tilt');var g=document.createElement('span');g.className='glare';el.appendChild(g);
       var max=el.classList.contains('phone')||el.classList.contains('media')?10:14;
       el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
@@ -543,6 +651,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     requestAnimationFrame(scroll3d);
   }
   requestAnimationFrame(scroll3d);
+
+  // Tarifs : filtres par catégorie
+  var pt=document.querySelectorAll('#ptabs button'),pr2=document.querySelectorAll('.prod');
+  pt.forEach(function(b){b.addEventListener('click',function(){pt.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});var f=b.dataset.f;pr2.forEach(function(s){s.hidden=!(f==='all'||s.dataset.c===f);s.classList.add('in')})})});
   // Galerie : filtres + agrandissement
   var btns=document.querySelectorAll('.seg button'),shots=document.querySelectorAll('.gal button');
   btns.forEach(function(b){b.addEventListener('click',function(){btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});var f=b.dataset.f;shots.forEach(function(s){s.hidden=!(f==='all'||s.dataset.c===f);s.classList.add('in')})})});
