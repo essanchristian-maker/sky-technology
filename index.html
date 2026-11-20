@@ -193,6 +193,43 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .js .rv.in{opacity:1;transform:none}
 .js .hero .rv{transform:translateY(30px)}
 
+
+/* ===== 3D ===== */
+.s3d{position:relative;background:radial-gradient(ellipse at 70% 40%,#0c2d22 0%,#040b08 55%,#000 100%);color:#f5f5f7;overflow:hidden;padding-block:clamp(90px,10vw,140px)}
+.s3d .wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(20px,4vw,60px);align-items:center}
+.s3d .kicker{color:#34c38f}
+.s3d p.lead{font-size:clamp(20px,2.2vw,26px);font-weight:300;color:#a1a1a6;line-height:1.45;margin-top:22px;max-width:30ch}
+.s3d ul{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:14px;font-size:18px}
+.s3d li{display:flex;gap:12px;align-items:center}
+.s3d li::before{content:"";width:10px;height:10px;border-radius:50%;background:#34c38f;box-shadow:0 0 14px #34c38f}
+#cam3d{position:relative;height:clamp(380px,48vw,620px);cursor:crosshair}
+#cam3d canvas{width:100%!important;height:100%!important;display:block}
+#cam3d:not(.ready){background:url(img/cat-solaire-clean.jpg) center/contain no-repeat;opacity:.9}
+.hud{position:absolute;inset:6% 4%;pointer-events:none;border-radius:24px}
+.hud i{position:absolute;width:34px;height:34px;border:2px solid rgba(52,195,143,.7)}
+.hud i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}.hud i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.hud i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}.hud i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+.hud span{position:absolute;top:10px;left:50px;font:500 13px var(--body);letter-spacing:.14em;color:#34c38f}
+.hud b{position:absolute;bottom:10px;right:50px;font:400 13px ui-monospace,Menlo,monospace;color:rgba(255,255,255,.6)}
+@media (max-width:880px){.s3d .wrap{grid-template-columns:1fr}#cam3d{order:-1}}
+
+/* Inclinaison 3D au survol */
+.tilt{transform-style:preserve-3d;will-change:transform;position:relative}
+.tilt .glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.35),transparent 55%);opacity:0;transition:opacity .4s;mix-blend-mode:soft-light;z-index:3}
+.tilt:hover .glare{opacity:1}
+.tile>*,.gear figure>*{transform:translateZ(30px)}
+.tiles,.gear,.gal,.cards,.reels,.steps{perspective:1200px}
+
+/* Apparitions 3D */
+.js .rv{transform:perspective(1000px) translateY(60px) rotateX(18deg);transform-origin:50% 100%}
+.js .rv.zoom{transform:perspective(1000px) rotateY(-14deg) scale(.9)}
+.js .rv.in{transform:none}
+.js h2.rv{transform:perspective(900px) translateY(40px) rotateX(55deg);transform-origin:50% 100%;transition-duration:1.2s}
+.js h2.rv.in{transform:none}
+.step i{transition:transform 1s var(--ease)}
+.js .step.rv:not(.in) i{transform:rotateY(180deg)}
+.hero .head{transform-style:preserve-3d;will-change:transform}
+.phone{transition:transform .2s linear}
 @media (max-width:880px){
   body{font-size:19px}
   .tiles,.gear{grid-template-columns:1fr 1fr}
@@ -202,7 +239,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   .gal{grid-template-columns:1fr 1fr}
 }
 @media (max-width:560px){.tiles,.gear{grid-template-columns:1fr}.stats{grid-template-columns:1fr;gap:44px}.steps{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv,.js h2.rv{opacity:1;transform:none}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -218,7 +255,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 <nav id="nav"><div class="wrap">
   <a class="logo" href="#top"><svg width="26" height="26"><use href="#mark"/></svg>SKY TECHNOLOGY</a>
-  <ul><li><a href="#services">Solutions</a></li><li><a href="#videos">Vidéos</a></li><li><a href="#realisations">Réalisations</a></li><li><a href="#methode">Méthode</a></li><li><a href="#equipements">Équipements</a></li></ul>
+  <ul><li><a href="#vision">Technologie</a></li><li><a href="#services">Solutions</a></li><li><a href="#videos">Vidéos</a></li><li><a href="#realisations">Réalisations</a></li><li><a href="#methode">Méthode</a></li><li><a href="#equipements">Équipements</a></li></ul>
   <a class="pill" href="#contact">Nous contacter</a>
 </div></nav>
 
@@ -254,6 +291,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="rv" style="--d:.12s"><b>24/7</b><span>accès à vos caméras</span></div>
       <div class="rv" style="--d:.24s"><b data-count="360" data-suffix="°">360°</b><span>de couverture, intérieur et extérieur</span></div>
     </div>
+  </div>
+</section>
+
+<section class="s3d" id="vision">
+  <div class="wrap">
+    <div>
+      <span class="kicker rv">Technologie</span>
+      <h2 class="mid rv" style="--d:.1s">Elle voit tout.<br><b>Même la nuit.</b></h2>
+      <p class="lead rv" style="--d:.2s">Bougez la souris : elle vous suit du regard. Vision infrarouge, détection de mouvement et alerte instantanée sur votre téléphone.</p>
+      <ul class="rv" style="--d:.3s"><li>Vision de nuit infrarouge</li><li>Détection et suivi de mouvement</li><li>Alerte en temps réel sur mobile</li><li>Enregistrement continu</li></ul>
+    </div>
+    <div id="cam3d" class="rv zoom" aria-label="Caméra de surveillance en 3D"><div class="hud" aria-hidden="true"><i></i><i></i><i></i><i></i><span>● REC · CAM 01</span><b id="clock">00:00:00</b></div></div>
   </div>
 </section>
 
@@ -458,6 +507,42 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     else{au.pause();stopUi();off=true;unbind();try{localStorage.setItem('sky-music','off')}catch(e){}}
   });
 
+
+  // Horloge HUD
+  var ck=document.getElementById('clock');if(ck)setInterval(function(){ck.textContent=new Date().toLocaleTimeString('fr-FR')},1000);
+
+  // Chargement de la scène 3D quand on approche
+  var c3=document.getElementById('cam3d');
+  if(c3&&'IntersectionObserver' in window){var lo=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;lo.disconnect();
+    var s1=document.createElement('script');s1.src='js/three.min.js';s1.onload=function(){var s2=document.createElement('script');s2.src='js/cam3d.js';document.body.appendChild(s2)};document.body.appendChild(s1)},{rootMargin:'600px'});lo.observe(c3)}
+
+  // Inclinaison 3D au survol (cartes, photos, vidéos)
+  var fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(fine&&!reduce){
+    document.querySelectorAll('.tile,.gear figure,.gal .ph,.phone,.cards a,.media').forEach(function(el){
+      el.classList.add('tilt');var g=document.createElement('span');g.className='glare';el.appendChild(g);
+      var max=el.classList.contains('phone')||el.classList.contains('media')?10:14;
+      el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+        el.style.transition='transform .12s ease-out';el.style.transform='perspective(900px) rotateX('+((.5-y)*max)+'deg) rotateY('+((x-.5)*max)+'deg) scale(1.03)';
+        el.style.setProperty('--gx',x*100+'%');el.style.setProperty('--gy',y*100+'%')});
+      el.addEventListener('pointerleave',function(){el.style.transition='transform .7s cubic-bezier(.2,.7,.2,1)';el.style.transform=''});
+    });
+    // Titre du haut en profondeur selon la souris
+    var hh=document.querySelector('.hero .head'),hero=document.querySelector('.hero');
+    hero.addEventListener('pointermove',function(e){var x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;hh.style.transform='perspective(1200px) rotateY('+(x*8)+'deg) rotateX('+(-y*6)+'deg)'});
+    hero.addEventListener('pointerleave',function(){hh.style.transform=''});
+  }
+
+  // Défilement 3D : sortie du hero et éventail des vidéos
+  var hw=document.querySelector('.hero .wrap'),phones=document.querySelectorAll('.reel .phone');
+  function scroll3d(){
+    if(reduce)return;var y=scrollY,h=innerHeight;
+    if(y<h&&hw){var k=y/h;hw.style.transform='perspective(1000px) translateZ('+(-k*300)+'px) rotateX('+(k*20)+'deg)';hw.style.opacity=1-k*1.2}
+    if(innerWidth>880)phones.forEach(function(ph,i){if(ph.matches(':hover'))return;var r=ph.getBoundingClientRect(),k=Math.max(-1,Math.min(1,(r.top+r.height/2-h/2)/h));
+      var side=i-1;ph.style.transform='perspective(1400px) rotateY('+(-side*k*35)+'deg) rotateX('+(k*12)+'deg) translateZ('+(-Math.abs(k)*120)+'px)'});
+    requestAnimationFrame(scroll3d);
+  }
+  requestAnimationFrame(scroll3d);
   // Galerie : filtres + agrandissement
   var btns=document.querySelectorAll('.seg button'),shots=document.querySelectorAll('.gal button');
   btns.forEach(function(b){b.addEventListener('click',function(){btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});var f=b.dataset.f;shots.forEach(function(s){s.hidden=!(f==='all'||s.dataset.c===f);s.classList.add('in')})})});
