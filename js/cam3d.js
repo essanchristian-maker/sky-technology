@@ -16,15 +16,15 @@
   var cam = new T.PerspectiveCamera(32, 1, 0.1, 100);
   cam.position.set(0, 0.6, 9);
 
-  scene.add(new T.HemisphereLight(0xffffff, 0x0a2a1e, 1.1));
+  scene.add(new T.HemisphereLight(0xffffff, 0x0a1a2e, 1.1));
   var key = new T.DirectionalLight(0xffffff, 2.2); key.position.set(4, 6, 6); scene.add(key);
-  var rim = new T.DirectionalLight(0x34c38f, 2.4); rim.position.set(-6, 2, -4); scene.add(rim);
-  var fill = new T.PointLight(0x7be3b6, 18, 20); fill.position.set(0, -2, 4); scene.add(fill);
+  var rim = new T.DirectionalLight(0x5aa3e6, 2.4); rim.position.set(-6, 2, -4); scene.add(rim);
+  var fill = new T.PointLight(0xa9cdf2, 18, 20); fill.position.set(0, -2, 4); scene.add(fill);
 
   var white = new T.MeshStandardMaterial({ color: 0xf4f5f7, roughness: 0.32, metalness: 0.15 });
   var dark = new T.MeshStandardMaterial({ color: 0x15171a, roughness: 0.25, metalness: 0.6 });
   var glass = new T.MeshPhysicalMaterial({ color: 0x0b1a2a, roughness: 0.05, metalness: 0.2, clearcoat: 1, clearcoatRoughness: 0.05 });
-  var green = new T.MeshStandardMaterial({ color: 0x0a7d55, emissive: 0x0a7d55, emissiveIntensity: 0.6, roughness: 0.4 });
+  var green = new T.MeshStandardMaterial({ color: 0x1262aa, emissive: 0x1262aa, emissiveIntensity: 0.6, roughness: 0.4 });
 
   // Support mural + bras
   var rig = new T.Group(); scene.add(rig);
@@ -64,7 +64,7 @@
     transparent: true, depthWrite: false, side: T.DoubleSide, blending: T.AdditiveBlending,
     uniforms: { uTime: { value: 0 } },
     vertexShader: 'varying vec3 vP; void main(){ vP = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
-    fragmentShader: 'uniform float uTime; varying vec3 vP; void main(){ float d = clamp(vP.z/6.0,0.0,1.0); float scan = 0.5+0.5*sin(vP.z*3.0-uTime*4.0); float a = (1.0-d)*0.22*(0.6+0.4*scan); gl_FragColor = vec4(0.2,0.85,0.56,a); }'
+    fragmentShader: 'uniform float uTime; varying vec3 vP; void main(){ float d = clamp(vP.z/6.0,0.0,1.0); float scan = 0.5+0.5*sin(vP.z*3.0-uTime*4.0); float a = (1.0-d)*0.22*(0.6+0.4*scan); gl_FragColor = vec4(0.35,0.64,0.95,a); }'
   });
   var cone = new T.Mesh(coneGeo, coneMat); cone.position.set(0, 0.42, 2.25); head.add(cone);
 
@@ -72,11 +72,11 @@
   var N = 380, pos = new Float32Array(N * 3);
   for (var j = 0; j < N; j++) { pos[j * 3] = (Math.random() - 0.5) * 16; pos[j * 3 + 1] = (Math.random() - 0.5) * 9; pos[j * 3 + 2] = (Math.random() - 0.5) * 10 - 2; }
   var pg = new T.BufferGeometry(); pg.setAttribute('position', new T.BufferAttribute(pos, 3));
-  var dots = new T.Points(pg, new T.PointsMaterial({ color: 0x7be3b6, size: 0.035, transparent: true, opacity: 0.7 }));
+  var dots = new T.Points(pg, new T.PointsMaterial({ color: 0xa9cdf2, size: 0.035, transparent: true, opacity: 0.7 }));
   scene.add(dots);
 
   // Grille au sol
-  var grid = new T.GridHelper(30, 40, 0x0a7d55, 0x0a7d55);
+  var grid = new T.GridHelper(30, 40, 0x1262aa, 0x1262aa);
   grid.material.transparent = true; grid.material.opacity = 0.18; grid.position.y = -2.6; scene.add(grid);
 
   rig.position.set(-0.7, 0.3, 0); rig.scale.setScalar(0.88);
