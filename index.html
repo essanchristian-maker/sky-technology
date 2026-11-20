@@ -266,11 +266,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .fine{font-size:15px;color:var(--soft);text-align:center;margin-top:32px;max-width:70ch;margin-inline:auto}
 
 /* Documents */
-.docs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);perspective:1400px}
+.docs{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);perspective:1400px}
 .doc{display:grid;gap:18px;text-decoration:none;color:inherit;text-align:center}
 .cover{position:relative;aspect-ratio:3/4;border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18),0 0 0 1px var(--line);transform:rotateY(-16deg) rotateX(6deg);transition:transform .8s var(--ease),box-shadow .8s;animation:float 6s ease-in-out infinite}
-.doc:nth-child(2) .cover{animation-delay:-2s;transform:rotateY(0) rotateX(6deg)}
-.doc:nth-child(3) .cover{animation-delay:-4s;transform:rotateY(16deg) rotateX(6deg)}
+.doc:nth-child(2) .cover{animation-delay:-1.5s;transform:rotateY(-6deg) rotateX(6deg)}
+.doc:nth-child(3) .cover{animation-delay:-3s;transform:rotateY(6deg) rotateX(6deg)}
+.doc:nth-child(4) .cover{animation-delay:-4.5s;transform:rotateY(16deg) rotateX(6deg)}
 .doc:hover .cover{transform:rotateY(0) rotateX(0) translateZ(60px)!important;box-shadow:0 50px 90px rgba(0,0,0,.28)}
 .cover img{width:100%;height:100%;object-fit:cover;object-position:top}
 .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.5) 0%,transparent 35%)}
@@ -279,7 +280,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .doc p{font-size:16px;color:var(--muted)}
 .doc .dlb{display:inline-flex;margin:4px auto 0;align-items:center;gap:8px;color:var(--accent);font-weight:500;font-size:17px}
 @media (max-width:1000px){.prods{grid-template-columns:1fr 1fr}}
-@media (max-width:880px){.case{grid-template-columns:1fr}.case .img{min-height:280px}.docs{grid-template-columns:1fr;max-width:380px;margin:auto}.cover{transform:none!important}}
+@media (max-width:880px){.case{grid-template-columns:1fr}.case .img{min-height:280px}.docs{grid-template-columns:1fr 1fr}.cover{transform:none!important}}
 @media (max-width:560px){.prods{grid-template-columns:1fr}}
 @media (max-width:880px){
   body{font-size:19px}
@@ -527,7 +528,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <p class="sub rv" style="--d:.2s">Partagez-les sur WhatsApp, imprimez-les ou gardez-les sous la main.</p>
     </div>
     <div class="docs">
-      <a class="doc rv" href="docs/catalogue-sky-technology.pdf" download><div class="cover"><img src="docs/catalogue.jpg" alt="Couverture du catalogue" loading="lazy"></div><h3>Catalogue 2026</h3><p>Nos produits · PDF, 4 pages</p><span class="dlb">↓ Télécharger</span></a>
+      <a class="doc rv" href="docs/portfolio-sky-technology.pdf" download><div class="cover"><img src="docs/portfolio.jpg" alt="Couverture du portfolio" loading="lazy" style="object-position:center"></div><h3>Portfolio</h3><p>Nos réalisations · PDF, 8 pages</p><span class="dlb">↓ Télécharger</span></a>
+      <a class="doc rv" style="--d:.08s" href="docs/catalogue-sky-technology.pdf" download><div class="cover"><img src="docs/catalogue.jpg" alt="Couverture du catalogue" loading="lazy" style="object-position:center"></div><h3>Catalogue 2026</h3><p>Nos produits · PDF, 5 pages</p><span class="dlb">↓ Télécharger</span></a>
       <a class="doc rv" style="--d:.12s" href="docs/prospectus-sky-technology.pdf" download><div class="cover"><img src="docs/prospectus.jpg" alt="Couverture du prospectus" loading="lazy"></div><h3>Prospectus</h3><p>Nos services en bref · PDF A5</p><span class="dlb">↓ Télécharger</span></a>
       <a class="doc rv" style="--d:.24s" href="docs/presentation-sky-technology.pdf" download><div class="cover"><img src="docs/presentation.jpg" alt="Couverture de la présentation" loading="lazy" style="object-position:center"></div><h3>Présentation entreprise</h3><p>Pour vos appels d'offres · PDF, 9 pages</p><span class="dlb">↓ Télécharger</span></a>
     </div>
