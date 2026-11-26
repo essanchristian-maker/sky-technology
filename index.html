@@ -296,7 +296,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .fine{font-size:15px;color:var(--soft);text-align:center;margin-top:32px;max-width:70ch;margin-inline:auto}
 
 /* Documents */
-.docs{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);perspective:1400px}
+.docs{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(16px,2.2vw,32px);perspective:1400px}
 .doc{display:grid;gap:18px;text-decoration:none;color:inherit;text-align:center}
 .cover{position:relative;aspect-ratio:3/4;border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18),0 0 0 1px var(--line);transform:rotateY(-16deg) rotateX(6deg);transition:transform .8s var(--ease),box-shadow .8s;animation:float 6s ease-in-out infinite}
 .doc:nth-child(2) .cover{animation-delay:-1.5s;transform:rotateY(-6deg) rotateX(6deg)}
@@ -310,6 +310,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .doc p{font-size:16px;color:var(--muted)}
 .doc .dlb{display:inline-flex;margin:4px auto 0;align-items:center;gap:8px;color:var(--accent);font-weight:500;font-size:17px}
 @media (max-width:1000px){.prods{grid-template-columns:1fr 1fr}}
+@media (max-width:1100px) and (min-width:881px){.docs{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:880px){.case{grid-template-columns:1fr}.case .img{min-height:280px}.docs{grid-template-columns:1fr 1fr}.cover{transform:none!important}}
 @media (max-width:560px){.prods{grid-template-columns:1fr}}
 @media (max-width:880px){
@@ -584,6 +585,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <a class="doc rv" href="docs/portfolio-global-dynamik.pdf" download><div class="cover"><img src="docs/portfolio.jpg" alt="Couverture du portfolio" loading="lazy" style="object-position:center"></div><h3>Portfolio</h3><p>Nos réalisations · PDF, 8 pages</p><span class="dlb">↓ Télécharger</span></a>
       <a class="doc rv" style="--d:.08s" href="docs/catalogue-global-dynamik.pdf" download><div class="cover"><img src="docs/catalogue.jpg" alt="Couverture du catalogue" loading="lazy" style="object-position:center"></div><h3>Catalogue 2026</h3><p>Nos produits · PDF, 5 pages</p><span class="dlb">↓ Télécharger</span></a>
       <a class="doc rv" style="--d:.12s" href="docs/prospectus-global-dynamik.pdf" download><div class="cover"><img src="docs/prospectus.jpg" alt="Couverture du prospectus" loading="lazy"></div><h3>Prospectus</h3><p>Nos services en bref · PDF A5</p><span class="dlb">↓ Télécharger</span></a>
+      <a class="doc rv" style="--d:.18s" href="docs/prestations-global-dynamik.pdf" download><div class="cover"><img src="docs/prestations.jpg" alt="Couverture du prospectus prestations" loading="lazy"></div><h3>Nos prestations</h3><p>Sécurité électronique et informatique · PDF A4</p><span class="dlb">↓ Télécharger</span></a>
       <a class="doc rv" style="--d:.24s" href="docs/presentation-global-dynamik.pdf" download><div class="cover"><img src="docs/presentation.jpg" alt="Couverture de la présentation" loading="lazy" style="object-position:center"></div><h3>Présentation entreprise</h3><p>Pour vos appels d'offres · PDF, 10 pages</p><span class="dlb">↓ Télécharger</span></a>
     </div>
   </div>
