@@ -14,7 +14,31 @@
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="image" href="/media/hero.jpg">
-<style>html{scroll-behavior:smooth}body{margin:0}img,video{max-width:100%}[hidden]{display:none!important}</style>
+<style>html{scroll-behavior:smooth}body{margin:0}img,video{max-width:100%}[hidden]{display:none!important}
+/* Réalisation phare */
+.phare{background:#000;color:#f5f5f7;padding-block:clamp(90px,11vw,150px)}
+.phare .hero-ph{position:relative;border-radius:36px;overflow:hidden;aspect-ratio:16/8.5;min-height:420px}
+.phare .hero-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04)}
+.phare .hero-ph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 30%,rgba(0,0,0,.82))}
+.phare .ov{position:absolute;left:clamp(22px,4vw,56px);right:clamp(22px,4vw,56px);bottom:clamp(22px,4vw,52px);z-index:1}
+.phare .badge{display:inline-flex;align-items:center;gap:8px;background:#EB3C3E;color:#fff;border-radius:999px;padding:7px 16px;font-size:15px;font-weight:600;letter-spacing:.02em}
+.phare h2{font-size:clamp(40px,6.4vw,88px);font-weight:200;letter-spacing:-.045em;line-height:1;margin-top:18px}
+.phare h2 b{font-weight:600}
+.phare .ov p{font-size:clamp(18px,1.9vw,23px);color:#d2d2d7;font-weight:300;margin-top:14px;max-width:46ch;line-height:1.45}
+.phare .grid2{display:grid;grid-template-columns:.8fr 1.2fr 1fr;gap:18px;margin-top:18px}
+.phare .grid2 figure{margin:0;border-radius:28px;overflow:hidden;position:relative;min-height:320px;background:#141416}
+.phare .grid2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.phare figcaption{position:absolute;left:14px;bottom:14px;background:rgba(0,0,0,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:12px;padding:7px 12px;font-size:14px;color:#fff}
+.phare .facts{background:#141416;border-radius:28px;padding:30px 28px;display:grid;gap:18px;align-content:center}
+.phare .facts div{border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:14px}
+.phare .facts div:last-child{border:0;padding:0}
+.phare .facts b{display:block;font-size:clamp(34px,3.4vw,46px);font-weight:200;letter-spacing:-.03em;color:#fff;line-height:1}
+.phare .facts span{font-size:16px;color:#a1a1a6}
+.phare .cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:28px}
+.phare .cta p{color:#a1a1a6;font-size:17px}
+@media (max-width:900px){.phare .grid2{grid-template-columns:1fr 1fr}.phare .facts{grid-column:1/-1;grid-template-columns:1fr 1fr}.phare .facts div:nth-last-child(2){border:0}}
+@media (max-width:560px){.phare .hero-ph{aspect-ratio:auto;min-height:520px}.phare h2{font-size:38px}.phare .grid2 figure{min-height:240px}}
+</style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Inter+Tight:wght@200;300;500;600&display=swap">
 <style>
 /* Épuré façon page produit : très grands titres fins, beaucoup d'air, vidéo plein écran, apparitions au défilement. */
@@ -313,7 +337,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 <nav id="nav"><div class="wrap">
   <a class="logo" href="#top" aria-label="Global Dynamik, accueil"><img class="lm lm-c" src="img/gd-mark.svg" alt=""><img class="lm lm-w" src="img/gd-mark-blanc.svg" alt=""><span class="ln">GLOBAL DYNAMIK</span></a>
-  <ul><li><a href="#vision">Technologie</a></li><li><a href="#services">Solutions</a></li><li><a href="#videos">Vidéos</a></li><li><a href="#realisations">Réalisations</a></li><li><a href="#methode">Méthode</a></li><li><a href="#tarifs">Catalogue</a></li><li><a href="#documents">Documents</a></li></ul>
+  <ul><li><a href="#vision">Technologie</a></li><li><a href="#services">Solutions</a></li><li><a href="#videos">Vidéos</a></li><li><a href="#phare">Réalisations</a></li><li><a href="#methode">Méthode</a></li><li><a href="#tarifs">Catalogue</a></li><li><a href="#documents">Documents</a></li></ul>
   <a class="pill" href="#contact">Nous contacter</a>
 </div></nav>
 
@@ -420,6 +444,26 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <figure class="reel rv" style="margin:0;--d:.24s"><div class="phone"><video muted loop playsinline preload="none" poster="media/reel-alarme.jpg" data-auto><source src="media/reel-alarme.mp4" type="video/mp4"></video></div><h3>Alarme anti-intrusion</h3><p>Coffret, raccordements, alerte GSM</p></figure>
     </div>
     <p class="dl rv">Coupez ou relancez la musique avec le bouton en bas à droite.</p>
+  </div>
+</section>
+
+<section class="phare" id="phare">
+  <div class="wrap">
+    <div class="hero-ph rv"><img src="img/residence-piscine.jpg" alt="Grande résidence avec piscine équipée par Global Dynamik, Abidjan" loading="lazy">
+      <div class="ov"><span class="badge">★ Réalisation phare</span>
+        <h2>Une grande résidence.<br><b>Sécurisée de A&nbsp;à&nbsp;Z.</b></h2>
+        <p>Résidence de plusieurs étages avec piscine, à Abidjan. Accès, parkings, couloirs et abords de la piscine sont surveillés et visibles depuis le poste de garde et sur mobile.</p></div></div>
+    <div class="grid2">
+      <figure class="rv"><img src="img/residence-facade.jpg" alt="Façade de la résidence" loading="lazy"><figcaption>La résidence</figcaption></figure>
+      <figure class="rv" style="--d:.08s"><img src="img/ecrans-1.jpg" alt="Mur d'écrans de supervision" loading="lazy"><figcaption>Supervision · 25 caméras</figcaption></figure>
+      <div class="facts rv" style="--d:.16s">
+        <div><b>25</b><span>caméras installées</span></div>
+        <div><b>1</b><span>poste de garde, mur d'écrans</span></div>
+        <div><b>24/7</b><span>enregistrement et accès mobile</span></div>
+        <div><b>4</b><span>zones : accès, parkings, couloirs, piscine</span></div>
+      </div>
+    </div>
+    <div class="cta rv"><a class="btn btn-fill" href="https://wa.me/2250555983935?text=Bonjour%20Global%20Dynamik%2C%20je%20souhaite%20s%C3%A9curiser%20ma%20r%C3%A9sidence.">Un projet similaire ? Écrivez-nous</a><p>Résidences, hôtels, immeubles : visite et devis gratuits.</p></div>
   </div>
 </section>
 
